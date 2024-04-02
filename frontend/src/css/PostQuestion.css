@@ -1,0 +1,28 @@
+.post-input-container {
+    border-radius: 5px;
+    width: 60%;
+    margin: 50px auto 0 auto;
+    background: white;
+    padding-bottom: 30px;
+    padding-top: 10px;
+    border: 1px solid #898989;
+    text-align: center;
+}
+
+.text-input {
+    width: 90%;
+    padding: 10px 15px 10px 15px;
+    border: 1px solid #00000033;
+}
+
+.post-question-header {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: auto;
+}
+
+.post-question-header > h2 { 
+    display: inline-block;
+    font-size: 2rem;
+}

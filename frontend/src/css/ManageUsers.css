@@ -1,0 +1,58 @@
+.manage-users-container {
+    padding: 120px;
+    width: 80%;
+    margin: auto;
+}
+
+.manage-users-header, .manage-users-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.manage-users-header, .manage-users-body {
+    border: 1px solid #00000013;
+}
+
+.manage-users-body {
+    font-size: 16px;
+}
+
+.manage-users-col {
+    font-size: 20px;
+    text-align: center;
+    width: 400px;
+    height: 70px;
+    font-size: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.manage-users-action {
+    padding: 8px;
+    cursor: pointer;
+    color: white;
+    border-radius: 2px;
+    font-size: 12px;
+    margin: 20px;
+    width: 50px;
+}
+
+.manage-users-action:nth-child(1) {
+    background-color: rgb(53, 147, 53);
+}
+
+.manage-users-action:nth-child(2) {
+    background-color: rgb(56, 161, 218);
+}
+
+.manage-users-action:nth-child(3) {
+    background-color: rgb(238, 68, 68);
+}
+
+.manage-users-role {
+    width: 200px;
+    height: 30px;
+    font-size: 14px;
+}

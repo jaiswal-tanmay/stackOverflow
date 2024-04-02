@@ -1,0 +1,168 @@
+.user-post {
+	padding: 80px;
+}
+
+.answer-btn {
+	background-color: #1b75d0;
+	color: white;
+	padding: 10px;
+	border-radius: 5px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.post-header > div {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.post-header {
+	border-bottom: 1px solid #00000022;
+	padding-bottom: 16px;
+}
+
+.post-container > div > span {
+	font-size: 12px;
+	color: #00000077;
+}
+
+.post-container > div > span > span {
+	color: #000000;
+}
+
+.post-container > div > h1 {
+	font-weight: normal;
+}
+
+.post-right {
+	width: 90%;
+}
+
+.post-right > div {
+	width: 90%;
+}
+
+.post-left > h3:nth-child(1),
+.post-left > h3:nth-child(3) {
+	transform: rotate(-90deg);
+	border: 1px solid #00000010;
+	border-radius: 2px;
+}
+
+.post-body {
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid #00000010;
+	padding: 15px;
+}
+
+.ql-syntax {
+	background: #00000010;
+	padding: 10px;
+	border-radius: 5px;
+	width: 100%;
+}
+
+.post-tags {
+	margin: 30px 0;
+}
+
+.post-tags > span {
+	background-color: #00000010;
+	color: blue;
+	margin-right: 10px;
+	padding: 5px;
+	font-size: 12px;
+	border-radius: 2px;
+}
+
+.post-body-footer {
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 30px;
+}
+
+.post-permissons > span {
+	margin-right: 10px;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.post-owner {
+	text-align: right;
+	margin: auto 0 auto auto;
+}
+
+.your-answer {
+	width: 98%;
+	margin: auto;
+}
+
+.your-answer > h3 {
+	margin: 30px 30px 10px 30px;
+	padding-top: 20px;
+}
+
+.answer-btn {
+	width: 150px;
+	margin: 30px auto;
+}
+
+.post-answers-title {
+	font-weight: 500;
+}
+
+.post-answers-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 1px solid #00000010;
+	padding: 10px 15px 15px 15px;
+}
+
+.post-left {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 30px;
+}
+
+.post-left > h3:nth-child(1),
+.post-left > h3:nth-child(3) {
+	transform: rotate(-90deg);
+	border: 1px solid #00000010;
+	border-radius: 2px;
+}
+
+.post-left > h3 {
+	margin-block: 0em;
+	padding: 10px;
+}
+
+.post-answers-author {
+	margin: 0;
+	text-align: right;
+}
+
+.answer-upvote-btn,
+.answer-downvote-btn {
+	cursor: pointer;
+}
+
+.post-permissons > span {
+	font-weight: 500;
+}
+
+.post-edit-btn {
+	color: green;
+}
+
+.post-delete-btn {
+	color: #e44343;
+}
+
+.post-upvote-btn,
+.post-downvote-btn {
+	cursor: pointer;
+}

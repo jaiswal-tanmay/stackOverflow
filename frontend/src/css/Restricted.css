@@ -1,0 +1,8 @@
+.restricted-page-container { 
+    padding: 80px;
+    text-align: center;
+}
+
+.restricted-page-container > h5 { 
+    margin: 20px auto;
+}
