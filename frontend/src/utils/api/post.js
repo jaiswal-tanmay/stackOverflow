@@ -14,6 +14,25 @@ export const allPosts = async () => {
 	}
 };
 
+export const searchPosts = async (searchData) => {
+	try {
+
+		const response = await (searchData.length > 0 ? 
+			axios.get(`${url}/posts?search=${searchData}`)
+			:
+			axios.get(`${url}/posts`)
+		);
+
+		if (response.status === 200) {
+			return { payload: response.data, status: 200 };
+		} 
+		else return { error: response, status: 500 };
+	} 
+	catch (error) {
+		console.log(error);
+	}
+};
+
 export const viewPost = async (id, token) => {
 	try {
 		const response = await axios.get(url + "/posts/" + id);

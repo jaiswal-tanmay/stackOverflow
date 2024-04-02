@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -7,9 +7,10 @@ import { profileMenuClose } from "../utils/LoginPopup";
 import { jwtDecode } from "jwt-decode";
 
 import "../css/Appbar.css";
+import { searchPosts } from "../utils/api/post";
 
 const Appbar = () => {
-  const { account, setAccount, role, setRole, setAccountID, setUserToken } = useContext(UserContext);
+  const { account, setAccount, role, setRole, setAccountID, setUserToken, setQuestionData } = useContext(UserContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -51,6 +52,19 @@ const Appbar = () => {
     }
   }
 
+	async function searchEngine(searchData) {
+		try {
+			const response = await searchPosts(searchData);
+			if (response.status === 200) {
+				setQuestionData(response.payload);
+			} else {
+				console.error('Failed to fetch data:', response);
+			}
+		} catch (error) {
+			console.error('Error fetching data:', error);
+		}
+	}
+
   return (
     <div>
       <div className="appBarContainer">
@@ -64,6 +78,10 @@ const Appbar = () => {
             name="searchBar"
             id="searchBar"
             placeholder="search"
+            onChange={(e) => {
+                searchEngine(e.target.value);
+              }
+            }
           />
         </div>
 
@@ -90,7 +108,7 @@ const Appbar = () => {
                 <Link to="/profile">My Posts</Link>
               </li>
 
-              {role == 'admin' &&
+              {role === 'admin' &&
                 <li onClick={() => profileMenuClose()}>
                   <Link to="/manage-users">Manage Users</Link>
                 </li>

@@ -68,10 +68,10 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def delete_associated_records(user)
-    user.posts.destroy_all
+    user.ans_votes.destroy_all
     user.answers.destroy_all
     user.post_votes.destroy_all
-    user.ans_votes.destroy_all
+    user.posts.destroy_all
   end
 
   def authorize_admin

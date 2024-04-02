@@ -15,7 +15,6 @@ class Api::V1::SessionsController < ApplicationController
 
   def destroy
     # clear the token from client side
-    # session[params[:id]] = nil
     head :no_content
   end
 end

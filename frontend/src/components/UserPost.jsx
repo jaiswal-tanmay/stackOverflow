@@ -378,7 +378,7 @@ function UserPost() {
 							</div>
 
 							<div className="post-body-footer">
-								{(currentPost.author === account || role === 'admin') &&
+								{(currentPost.author === account || role === 'admin' || role === 'super_user') &&
 									<div className="post-permissons">
 										<span className="post-edit-btn" onClick={() => navigate("/post/" + postId + "/edit")}>
 											edit

@@ -14,10 +14,10 @@ class UserPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.admin? || user.super_user? || record == user
+    (user.admin? && record != user)
   end
 
   def change_role?
-    user.admin? || user.super_user?
+    user.admin?
   end
 end

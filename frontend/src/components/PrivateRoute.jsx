@@ -6,7 +6,7 @@ import { viewPost } from "../utils/api/post";
 import Loader from "./Loader.jsx";
 
 const PrivateRoute = ({ Component }) => {
-  const { account, setReqURL } = useContext(UserContext);
+  const { account, setReqURL, role } = useContext(UserContext);
   const location = useLocation();
   const { postid } = useParams();
   const [currentPost, setCurrentPost] = useState(null);
@@ -45,7 +45,7 @@ const PrivateRoute = ({ Component }) => {
   return (
     (account && account !== "login") || auth ? (
       postid ?
-        ((currentPost?.author === account) || (account === "admin") ?
+        ((currentPost?.author === account) || (account === "admin") || (role === 'super_user') ?
           <Component currentPost={currentPost} />
           :
           <Navigate to={"/"} />

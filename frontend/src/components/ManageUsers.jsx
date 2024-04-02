@@ -12,6 +12,36 @@ const disableTag = {
 	pointerEvents: "none"
 }
 
+const postDeletionContainer = {
+	left: 'calc(50% - 200px)',
+	top: 'calc(12%)',
+	width: '400px',
+	margin: 'auto',
+	position: 'fixed',
+	display: 'flex',
+	flexDirection: 'column',
+	justifyContent: 'center',
+	alignItems: 'center',
+	background: '#f7f7f7',
+	borderRadius: '5px',
+	zIndex: '10',
+}
+
+const confirmationDeletion = {
+	display: 'flex',
+	width: '100%',
+	justifyContent: 'space-evenly'
+}
+
+const deleteBtn = {
+	color: 'white',
+	background: '#fd2d2d',
+	padding: '5px',
+	borderRadius: '2px',
+	cursor: 'pointer',
+}
+
+
 
 export default function ManageUsers() {
 	const navigate = useNavigate();
@@ -19,6 +49,9 @@ export default function ManageUsers() {
 	const [allUsers, setAllUsers] = useState("");
 	const [loader, setLoader] = useState(true);
 	const [roleError, setRoleError] = useState("");
+	const [showDelete, setShowDelete] = useState(false);
+
+	const [targeted, setTarget] = useState('');
 
 	let usersLen = 0;
 
@@ -85,21 +118,31 @@ export default function ManageUsers() {
 		myselect.setAttribute("disabled", "disabled");
 	}
 
-	async function handleUserDelete(e) {
-		const userIdx = e.target.classList[1];
+	function deletePopup(e) {
+		setShowDelete(true);
+		setTarget(e);
+	}
+
+	function cancelDeletePopup() {
+		setShowDelete(false);
+		setTarget('');
+	}
+
+	async function handleUserDelete() {
+		const userIdx = targeted.target.classList[1];
 
 		try {
 			const response = await userDeletion(userToken, allUsers[userIdx].id);
-			if (response.status === 200) {
+			if (response?.status === 200) {
 				setAllUsers(response.payload);
 				setRoleError("account deleted successfully.");
-			}
-			else {
-				console.log(response.error);
 			}
 		}
 		catch (error) {
 			console.log(error);
+		}
+		finally {
+			setShowDelete(false);
 		}
 	}
 
@@ -117,6 +160,16 @@ export default function ManageUsers() {
 					roleError &&
 					<div className="error-div margin-bottom-10">
 						{roleError}
+					</div>
+				}
+
+				{showDelete &&
+					<div style={postDeletionContainer}>
+						<h5>Are you sure you want to delete this user account?</h5>
+						<div style={confirmationDeletion}>
+							<h6 style={{ ...deleteBtn, background: 'green' }} onClick={cancelDeletePopup}>cancel</h6>
+							<h6 style={deleteBtn} onClick={handleUserDelete}>delete</h6>
+						</div>
 					</div>
 				}
 
@@ -147,7 +200,10 @@ export default function ManageUsers() {
 									<option value="super_user">Super User</option>
 									<option value="admin">Admin</option>
 								</select>
-								<div className="manage-users-col">
+
+								{ data.username === account &&
+								<div className="manage-users-col" style={disableTag}>
+								
 									<span
 										className={"manage-users-action " + idx}
 										onClick={updateUserRole}
@@ -165,11 +221,39 @@ export default function ManageUsers() {
 										className={
 											"manage-users-action " + idx
 										}
-										onClick={handleUserDelete}
+										onClick={deletePopup}
 									>
 										delete
 									</span>
 								</div>
+								}
+	
+								{ data.username !== account &&
+								<div className="manage-users-col">
+								
+									<span
+										className={"manage-users-action " + idx}
+										onClick={updateUserRole}
+									>
+										update
+									</span>
+									<span
+										style={disableTag}
+										className={"manage-users-action " + idx}
+										onClick={saveUserRole}
+									>
+										save
+									</span>
+									<span
+										className={
+											"manage-users-action " + idx
+										}
+										onClick={deletePopup}
+									>
+										delete
+									</span>
+								</div>
+								}
 							</div>
 						);
 					})}

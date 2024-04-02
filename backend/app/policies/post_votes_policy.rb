@@ -1,10 +1,15 @@
 class PostVotesPolicy < ApplicationPolicy
-  class Scope < Scope
-
-    def resolve
-      if user.admin? || user.super_user?
+    class Scope < Scope
+      def resolve
         scope.all
       end
     end
-  end
+
+    def create?
+      !user.nil? && record.post.user_id != user.id
+    end
+
+    def destroy?
+      create?
+    end
 end

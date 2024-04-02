@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { UserContext } from "./Context";
-import { allPosts } from "../utils/api/post";
+import { allPosts, searchPosts } from "../utils/api/post";
 
 import "../css/Home.css";
 

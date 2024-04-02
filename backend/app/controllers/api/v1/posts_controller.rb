@@ -3,7 +3,12 @@ class Api::V1::PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
 
   def index
-    @posts = policy_scope(Post)
+    if params[:search].present?
+      @posts = Post.where("title LIKE ?", "%#{params[:search]}%")
+    else
+      @posts = Post.all
+    end
+
     render json: @posts.map(&:as_custom_json)
   end
 
@@ -60,6 +65,6 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :description, :outcome, :tags, :user_id)
+    params.require(:post).permit(:title, :description, :outcome, :tags, :user_id, :search)
   end
 end
